@@ -13,27 +13,34 @@ type ThemeProviderState = {
   setTheme: (theme: Theme) => void
 }
 
+// default state
 const initialState: ThemeProviderState = {
   theme: 'system',
   setTheme: () => null,
 }
 
+// create theme context instance
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
   defaultTheme = 'system',
-  storageKey = 'vite-ui-theme',
+  storageKey = 'ui-theme',
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
+    // if the local storage not exists, create one as "system"
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
   )
 
+  // run when component rendered for first time, and every time that theme variriant  changed by the user
   useEffect(() => {
     const root = window.document.documentElement
+
+    // remove all theme classes
     root.classList.remove('light', 'dark')
 
+    // get system theme if need
     if (theme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
         .matches
@@ -43,6 +50,7 @@ export function ThemeProvider({
       return
     }
 
+    // add specific theme
     root.classList.add(theme)
   }, [theme])
 
@@ -61,6 +69,7 @@ export function ThemeProvider({
   )
 }
 
+// hook to use the context where he is called
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext)
 

@@ -10,7 +10,7 @@ import { router } from './routes'
 export function App() {
   return (
     <HelmetProvider>
-      <ThemeProvider defaultTheme="dark" storageKey="pizzashop-theme">
+      <ThemeProvider defaultTheme="light" storageKey="pizzashop-theme">
         <Toaster richColors />
         {/* %s = dinamic specific page title */}
         <Helmet titleTemplate="%s | pizza.shop" />
