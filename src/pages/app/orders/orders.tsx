@@ -19,6 +19,10 @@ import { OrderTableRow } from './order-table-row'
 export function Orders() {
   const [searchParams, setSearchParams] = useSearchParams()
 
+  const orderId = searchParams.get('orderId')
+  const customerName = searchParams.get('customerName')
+  const status = searchParams.get('status')
+
   // keep pageIndex as a number, but use it as a string when fill/change url "?page="
   // the number always in index format (starts from 0), while string always starts from 1
   const pageIndex = z.coerce
@@ -29,8 +33,14 @@ export function Orders() {
   const { data: result } = useQuery({
     // add pageIndex into key array will avoid cached bahavior when change page number
     // else the page was keep the same content/data bcs each page change its a recall of key 'orders'
-    queryKey: ['orders', pageIndex],
-    queryFn: () => getOrders({ pageIndex }),
+    queryKey: ['orders', pageIndex, orderId, customerName, status],
+    queryFn: () =>
+      getOrders({
+        pageIndex,
+        orderId,
+        customerName,
+        status: status === 'all' ? null : status,
+      }),
   })
 
   function handlePaginate(pageIndex: number) {
