@@ -2,6 +2,7 @@ import { Label } from '@radix-ui/react-label'
 import { useQuery } from '@tanstack/react-query'
 import { subDays } from 'date-fns'
 import { useMemo, useState } from 'react'
+import { DateRange } from 'react-day-picker'
 import {
   CartesianGrid,
   Line,
