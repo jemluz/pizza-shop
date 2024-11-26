@@ -13,8 +13,8 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    setupFiles: ['./test/setup.ts'],
     environment: 'happy-dom',
+    setupFiles: ['./src/setupTests.ts'],
   },
 } as UserConfig & {
   test: InlineConfig
