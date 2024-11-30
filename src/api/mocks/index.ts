@@ -7,6 +7,8 @@ import { getDayOrdersAmountMock } from './get-day-orders-amount.mock'
 import { getManagedRestaurantMock } from './get-managed-restaurant.mock'
 import { getMonthOrdersAmountMock } from './get-month-orders-amount.mock'
 import { getMonthRevenueMock } from './get-month-revenue.mock'
+import { getOrdersMock } from './get-orders.mock'
+import { getOrderDetailsMock } from './get-orders-details.mock'
 import { getPopularProductsMock } from './get-popular-products.mock'
 import { getProfileMock } from './get-profile.mock'
 import { registerRestaurantMock } from './register-restaurant.mock'
@@ -25,6 +27,8 @@ export const worker = setupWorker(
   getProfileMock,
   getManagedRestaurantMock,
   updateProfileMock,
+  getOrdersMock,
+  getOrderDetailsMock,
 )
 
 // only when enableMSW is called, MSW will replace API for intercept the requests
