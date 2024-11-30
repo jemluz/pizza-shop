@@ -13,7 +13,15 @@ describe('NavLink', () => {
       {
         wrapper: ({ children }) => {
           return (
-            <MemoryRouter initialEntries={['/about']}>{children}</MemoryRouter>
+            <MemoryRouter
+              initialEntries={['/about']}
+              future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true,
+              }}
+            >
+              {children}
+            </MemoryRouter>
           )
         },
       },

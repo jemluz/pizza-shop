@@ -15,6 +15,10 @@ describe('SignIn', () => {
           <HelmetProvider>
             <MemoryRouter
               initialEntries={['/sign-in?email=johndoe@example.com']}
+              future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true,
+              }}
             >
               <QueryClientProvider client={queryClient}>
                 {children}
